@@ -103,6 +103,9 @@ intervalWithMaxSteps</code></pre>
 </div>
 <div id="imputing-missing-values" class="section level2">
 <h2>Imputing missing values</h2>
+<p>First check how many values are missing:</p>
+<pre class="r"><code>sum(is.na(activityMonitorData$steps))</code></pre>
+<pre><code>## [1] 2304</code></pre>
 <p>To impute the NA values, that is to replace them with some sensible value, the mean value for that interval over all days where the value is not NA is used. The function <em>imputeValueForMissingStep</em> returns the step value if it exists, otherwise it returns the mean. This is used in conjuction with <em>sapply</em> to create a new data frame with imputed values.</p>
 <pre class="r"><code># Return $steps from activityMonitorData where any NAs have been replaced
 # with the meanValue for the interval of the step measurement

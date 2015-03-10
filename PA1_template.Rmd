@@ -83,6 +83,12 @@ intervalWithMaxSteps
 
 ## Imputing missing values
 
+First check how many values are missing:
+
+```{r}
+sum(is.na(activityMonitorData$steps))
+```
+
 To impute the NA values, that is to replace them with some sensible value, the mean value for that interval over all 
 days where the value is not NA is used. The function *imputeValueForMissingStep* returns the step value if it exists, 
 otherwise it returns the mean.  This is used in conjuction with *sapply* to create a new data frame with imputed values.

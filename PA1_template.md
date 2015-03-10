@@ -102,6 +102,17 @@ intervalWithMaxSteps
 
 ## Imputing missing values
 
+First check how many values are missing:
+
+
+```r
+sum(is.na(activityMonitorData$steps))
+```
+
+```
+## [1] 2304
+```
+
 To impute the NA values, that is to replace them with some sensible value, the mean value for that interval over all 
 days where the value is not NA is used. The function *imputeValueForMissingStep* returns the step value if it exists, 
 otherwise it returns the mean.  This is used in conjuction with *sapply* to create a new data frame with imputed values.
@@ -136,7 +147,7 @@ imputedStepsPerDay = sapply(dates, function(x)
 qplot(imputedStepsPerDay, binwidth=2000, xlab="steps per day")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-10-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-11-1.png) 
 
 
 ```r
@@ -197,7 +208,7 @@ print(ggplot(imputedMeanStepsPerInterval, aes(x=interval, y=steps, group=weekPar
  + scale_x_discrete("hour", labels=interval_labels))
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-14-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-15-1.png) 
 
 There appear to be two differences between weekdays and weekends. First steps ramp up earlier on weekdays, presumably because of
 work schedules. However, during the day, there are somewhat more steps on weekends, presumably because one is free to wander 
