@@ -182,8 +182,8 @@ computeMeansPerInterval <- function(weekPart) {
 }
 
 imputedMeanStepsPerInterval = melt(data.frame(interval = intervals,
-                                              weekday = computeMeansPerInterval("weekend"), 
-                                              weekend = computeMeansPerInterval("weekday")),
+                                              weekday = computeMeansPerInterval("weekday"), 
+                                              weekend = computeMeansPerInterval("weekend")),
                                    measure.vars=c("weekday", "weekend"), 
                                    variable.name="weekPart", 
                                    value.name="steps")
@@ -192,7 +192,8 @@ imputedMeanStepsPerInterval = melt(data.frame(interval = intervals,
 
 ```r
 print(ggplot(imputedMeanStepsPerInterval, aes(x=interval, y=steps, group=weekPart)) 
- + geom_line(aes(color=weekPart)) 
+ + geom_line(color="blue") 
+ + facet_wrap(~weekPart)
  + scale_x_discrete("hour", labels=interval_labels))
 ```
 
